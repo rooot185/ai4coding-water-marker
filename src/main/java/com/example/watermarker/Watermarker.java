@@ -65,6 +65,15 @@ public class Watermarker implements Callable<Integer> {
             return 1;
         }
 
+        System.out.println("--- Debug: All files found in directory ---");
+        File[] allFiles = inputDirectory.listFiles();
+        if (allFiles != null) {
+            for (File f : allFiles) {
+                System.out.println(f.getName());
+            }
+        }
+        System.out.println("-----------------------------------------");
+
         File[] files = inputDirectory.listFiles((dir, name) ->
                 Arrays.stream(SUPPORTED_EXTENSIONS).anyMatch(ext -> name.toLowerCase().endsWith(ext)));
 
@@ -163,4 +172,3 @@ public class Watermarker implements Callable<Integer> {
         System.exit(exitCode);
     }
 }
-''
